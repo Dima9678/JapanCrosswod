@@ -9,7 +9,7 @@ namespace MyWinFormsApp
         //Размер поля
         const int gridSize = 10;
         //Размер клетки в пикселях
-        const int cellSize = 50;
+        const int cellSize = 80;
 
         //модель данных
         int[,] cells = new int[gridSize, gridSize];
@@ -60,7 +60,7 @@ namespace MyWinFormsApp
             
 
 
-            while (cycle < 1)
+            while (true)
             {
                 //Если количество пустых клеток совпадает с цифрой, заполняются все белые клетки
                 //Заполнение полных горизонтальных линий
@@ -380,7 +380,87 @@ namespace MyWinFormsApp
                         }
                     }
                 }
+
+                //Соединение разрывов, между большими группами клеток(строки)
+                for (int i = 0; i < fillHorisontal.Length; i++)
+                {
+                    if (fillHorisontal[i].Length > 1)
+                    {
+                        continue;
+                    }
+                    int firstBlackPixIndex = 0;
+                    int lastBlackPixIndex = 0;
+                    bool neetToConnect = false;
+                    //Ищем первый черный пиксель
+                    for (int j = 0; j < fillHorisontal[i].Length; j++)
+                    {
+                        if (cells[i,j] == 1)
+                        {
+                            firstBlackPixIndex = j;
+                            neetToConnect = true;
+                            break;
+                        }
+                    }
+                    //Ищем последний черный пиксель
+                    for (int j = gridSize - 1; j >= 0 ; j--)
+                    {
+                        if (cells[i, j] == 1)
+                        {
+                            lastBlackPixIndex = j;
+                            neetToConnect = true;
+                            break;
+                        }
+                    }
+                    //заполнение от первого до последнего черного пикселя
+                    for (int j = 0; j < gridSize; j++)
+                    {
+                        if(j >= firstBlackPixIndex & j <= lastBlackPixIndex & neetToConnect == true)
+                        {
+                            cells[i,j] = 1;
+                        }
+                    }
+                }
+
                 
+                //Соединение разрывов, между большими группами клеток(столбцы)
+                for (int i = 0; i < fillVertical.Length; i++)
+                {
+                    if (fillVertical[i].Length > 1)
+                    {
+                        continue;
+                    }
+                    int firstBlackPixIndex = 0;
+                    int lastBlackPixIndex = 0;
+                    bool neetToConnect = false;
+                    //Ищем первый черный пиксель
+                    for (int j = 0; j < fillVertical[i].Length; j++)
+                    {
+                        if (cells[j,i] == 1)
+                        {
+                            firstBlackPixIndex = j;
+                            neetToConnect = true;
+                            break;
+                        }
+                    }
+                    //Ищем последний черный пиксель
+                    for (int j = gridSize - 1; j >= 0 ; j--)
+                    {
+                        if (cells[j,i] == 1)
+                        {
+                            lastBlackPixIndex = j;
+                            neetToConnect = true;
+                            break;
+                        }
+                    }
+                    //заполнение от первого до последнего черного пикселя
+                    for (int j = 0; j < gridSize; j++)
+                    {
+                        if(j >= firstBlackPixIndex & j <= lastBlackPixIndex & neetToConnect == true)
+                        {
+                            cells[j,i] = 1;
+                        }
+                    }
+                }
 
                 cycle++;
             }

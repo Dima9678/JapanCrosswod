@@ -30,8 +30,10 @@ partial class Form1
     {
         this.components = new System.ComponentModel.Container();
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
+        //this.ClientSize = new System.Drawing.Size(800, 450);
         this.Text = "Form1";
+        this.StartPosition = FormStartPosition.CenterScreen;
+        this.ClientSize = new Size(gridSize * cellSize, gridSize * cellSize);
     }
 
     #endregion
