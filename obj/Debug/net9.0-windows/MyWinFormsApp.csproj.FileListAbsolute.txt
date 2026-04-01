@@ -12,3 +12,4 @@ S:\Coding\C# Projects\MyWinFormsApp\obj\Debug\net9.0-windows\refint\MyWinFormsAp
 S:\Coding\C# Projects\MyWinFormsApp\obj\Debug\net9.0-windows\MyWinFormsApp.pdb
 S:\Coding\C# Projects\MyWinFormsApp\obj\Debug\net9.0-windows\MyWinFormsApp.genruntimeconfig.cache
 S:\Coding\C# Projects\MyWinFormsApp\obj\Debug\net9.0-windows\ref\MyWinFormsApp.dll
+s:\Coding\C# Projects\MyWinFormsApp\obj\Debug\net9.0-windows\MyWinFormsApp.sourcelink.json

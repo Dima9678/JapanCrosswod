@@ -32,19 +32,6 @@ namespace MyWinFormsApp
             int cycle = 0;
             int[][] fillHorisontal =
             {
-[9],
-[9],
-[2],
-[2],
-[3],
-[5],
-[3,3],
-[3,3],
-[3,2],
-[2,2],
-            };
-            int[][] fillVertical = 
-            {
 [2],
 [2,3],
 [2,3],
@@ -55,12 +42,25 @@ namespace MyWinFormsApp
 [2,3],
 [2,4],
 [2,3],
+            };
+            int[][] fillVertical = 
+            {
+[9],
+[9],
+[2],
+[2],
+[3],
+[5],
+[3,3],
+[3,3],
+[3,2],
+[2,2],
 };
 
             
 
 
-            while (cycle < 100)
+            while (cycle < 1)
             {
                 //Если количество пустых клеток совпадает с цифрой, заполняются все белые клетки
                 //Заполнение полных горизонтальных линий
@@ -310,7 +310,7 @@ namespace MyWinFormsApp
                                 }
                                 else
                                 {
-                                    if (filledPixCounter <= blackPix)
+                                    if (filledPixCounter < blackPix)
                                     {
                                         cells[i,j] = 1;
                                         filledPixCounter++;
@@ -326,7 +326,7 @@ namespace MyWinFormsApp
                     }
                 }
 
-
+                
                 //Если количество клеток для заполнения = 9, а размер поля 10, заполняются 8 в центре(столбцы))
                 for (int i = 0; i < fillVertical.Length; i++)
                 {
@@ -365,7 +365,7 @@ namespace MyWinFormsApp
                                 }
                                 else
                                 {
-                                    if (filledPixCounter <= blackPix)
+                                    if (filledPixCounter < blackPix)
                                     {
                                         cells[j,i] = 1;
                                         filledPixCounter++;
@@ -380,6 +380,7 @@ namespace MyWinFormsApp
                         }
                     }
                 }
+                
 
                 cycle++;
             }
