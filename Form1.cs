@@ -11,6 +11,13 @@ namespace MyWinFormsApp
         //Размер клетки в пикселях
         const int cellSize = 80;
 
+        TaskCompletionSource<bool> keyWaiter;
+        
+        void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            keyWaiter?.TrySetResult(true);
+        }
+
         //модель данных
         int[,] cells = new int[gridSize, gridSize];
 
@@ -22,12 +29,14 @@ namespace MyWinFormsApp
             InitializeComponent(); //Создание окна
             this.DoubleBuffered = true; //Убирает мерцание при перерисовке
 
+            this.KeyPreview = true;
+            this.KeyDown += OnKeyDown;
             // пример: закрасить верхнюю строку при запуске
             Main();
         }
 
         //Бэкенд
-        void Main()
+        async void Main()
         {   //заполнение полных горизонтальных линий
             int cycle = 0;
             int[][] fillHorisontal =
@@ -463,6 +472,10 @@ namespace MyWinFormsApp
                 }
 
                 cycle++;
+                this.Invalidate(); // перерисовать
+
+                keyWaiter = new TaskCompletionSource<bool>();
+                await keyWaiter.Task; // ждать клавишу
             }
         }
 
